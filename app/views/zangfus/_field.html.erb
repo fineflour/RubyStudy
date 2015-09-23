@@ -1,0 +1,35 @@
+<%
+# Required local params
+# @param user [User] - an instance of User to render the form for.
+%>
+
+<div class="zangfu-info">
+   <p class="data-row">
+    <span class="data-name">Name :</span>
+    <span class="data-value"><%= zangfu.name_eng %></span>
+    <span class="data-name">Meridian :</span>
+    <span class="data-value"><%= zangfu.meridian_eng %></span>
+
+  </p>
+
+  <p class="data-row">
+    <span class="data-name">Name :</span>
+    <span class="data-value"><%= zangfu.meridian_ko %></span>
+    <span class="data-name">Meridian :</span>
+    <span class="data-value"><%= zangfu.name_ko %></span>
+  </p>
+  
+  <p class="data-row">
+    <span class="data-name">Description:</span>
+    <span class="data-value"><%= zangfu.description %></span>
+  </p>
+
+ <p class="data-row">
+    <span class="data-name">Created on:</span>
+    <span class="data-value"><%= zangfu.created_at %></span>
+  </p>
+  <p class="data-row">
+    <span class="data-name">Last updated on:</span>
+    <span class="data-value"><%= zangfu.updated_at %></span>
+  </p>
+</div>

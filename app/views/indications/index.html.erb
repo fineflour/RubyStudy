@@ -1,0 +1,41 @@
+<div class="col-md-10 col-xs-12 col-sm-9">
+  <div class="page-header">
+    <h1>Indications</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+          <%= link_to "Add new", new_indication_path, class: "btn btn_info" %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <%#= link_to "Add new user", new_material_path, class: "btn btn-info" %>
+        </div>
+
+        <div class="table-responsive">
+          <table id="indication" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @indications.each do |i| %>
+                <tr id="indication-<%= i.id %>">
+                  <td><%= i.name_eng %></td>
+                  <td><%= i.name_ko %></td>
+                  <td>
+                    <%= link_to "Edit", edit_indication_path(i) %> | 
+                    <%= link_to "Delete", indication_path(i), method: :delete, data: { confirm: 'Are you sure that you want to delete?'} %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <span class="pull-right">
+        <%= will_paginate @zangfus, renderer: BootstrapPagination::Rails %>
+      </span>
+      </div>
+    </div>
+  </div>
+</div>

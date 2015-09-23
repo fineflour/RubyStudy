@@ -1,0 +1,31 @@
+<%
+    # Required local params
+  # @param user [User] an instance of User to render the form for.
+%>
+
+<%= simple_form_for point, 
+  html: {class: "form-horizontal" },
+  wrapper: :horizontal_form,
+  wrapper_mappings: {
+  } do |f| %>
+
+  <div class="row">
+    <div class="col-xs-24 col-sm-12 col-md-12">
+      <fieldset>
+        <%= f.input :name_eng, :input_html => {:size => 200, :maxlength => 255} %>
+        <%= f.input :name_ko, :input_html => {:size => 200, :maxlength => 255} %>
+        <%= f.input :location, as: :text, :input_html => {:rows => 6} %>
+        <%= f.association :indications,as: :check_boxes, collection: Indication.active.order(:name_eng), :label_method => :name_eng, :value_method => :id %>
+      </fieldset>
+    </div>
+  </div>
+  </br>
+  <div class="row">
+    <div class="col-xs-24 col-sm-12 col-md-12">
+      <div class="button-padding pull-right">
+        <%= link_to "Back to index", points_path, class: "btn btn-default" %>
+        <%= f.submit "Submit", class: "btn btn-info" %>
+      </div>
+    </div>
+  </div>
+<% end %>

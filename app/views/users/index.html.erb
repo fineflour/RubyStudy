@@ -1,0 +1,43 @@
+<div class="col-md-10 col-xs-12 col-sm-9">
+  <div class="page-header">
+    <h1>User Accounts</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+          <%= link_to "Add new", new_user_registration_path, class: "btn btn_info" %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <%#= link_to "Add new user", new_material_path, class: "btn btn-info" %>
+        </div>
+
+        <div class="table-responsive">
+          <table id="users" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |u| %>
+                <tr id="user-<%= u.id %>">
+                  <td><%= u.name %></td>
+                  <td><%= u.email %></td>
+                  <td><%= u.roles.first.name %></td>
+                  <td>
+                    <%= link_to "Edit", edit_user_path(u) %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <span class="pull-right">
+        <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+      </span>
+      </div>
+    </div>
+  </div>
+</div>

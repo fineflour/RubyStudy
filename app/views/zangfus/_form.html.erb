@@ -1,0 +1,36 @@
+<%
+    # Required local params
+  # @param user [User] an instance of User to render the form for.
+%>
+
+<%= simple_form_for zangfu, 
+  html: {class: "form-horizontal" },
+  wrapper: :horizontal_form,
+  wrapper_mappings: {
+  } do |f| %>
+
+  <div class="row">
+    <div class="col-xs-24 col-sm-12 col-md-12">
+      <fieldset>
+        <%= f.input :name_eng, :input_html => {:size => 200, :maxlength => 255} %>
+        <%= f.input :meridian_eng, :input_html => {:size => 200, :maxlength => 255} %>
+      </fieldset>
+      </br>
+      <fieldset>
+        <%= f.input :name_ko, :input_html => {:size => 200, :maxlength => 255} %>
+        <%= f.input :meridian_ko, :input_html => {:size => 200, :maxlength => 255} %>
+      </fieldset>
+      </br>
+      <fieldset>
+        <%= f.input :description, as: :text %>
+      </fieldset>
+    </div>
+  </div>
+  </br>
+  <div class="col-xs-24 col-sm-12 col-md-12">
+    <div class="button-padding pull-right">
+      <%= link_to "Back to index", zangfus_path, class: "btn btn-default" %>
+      <%= f.submit "Submit", class: "btn btn-info" %>
+    </div>
+  </div>
+<% end %>

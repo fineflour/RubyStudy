@@ -1,0 +1,30 @@
+<%
+# Required local params
+# @param user [User] - an instance of User to render the form for.
+%>
+
+<div class="user-info">
+  <p class="data-row">
+    <span class="data-name">Name:</span>
+    <span class="data-value"><%= user.name %></span>
+  </p>
+
+  <p class="data-row">
+    <span class="data-name">Email:</span>
+    <span class="data-value"><%= user.email %></span>
+  </p>
+
+  <p class="data-row">
+    <span class="data-name">Role:</span>
+    <span class="data-value"><%= user.roles.first.name %></span>
+  </p>
+
+  <p class="data-row">
+    <span class="data-name">Created on:</span>
+    <span class="data-value"><%= user.created_at %></span>
+  </p>
+  <p class="data-row">
+    <span class="data-name">Last updated on:</span>
+    <span class="data-value"><%= user.updated_at %></span>
+  </p>
+</div>

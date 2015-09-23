@@ -1,0 +1,16 @@
+<div class="col-md-10 col-xs-12 col-sm-9">
+  <div id="-show">
+    <div class="page-header">
+      <h3><%= @zangfu.name_eng %></h3>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div><%= render partial: "field", locals: { zangfu: @zangfu} %></div>
+        <div class="button-padding pull-right">
+          <%= link_to "Back to index", zangfus_path, class: "btn btn-default" %>
+          <%= link_to "Edit", edit_zangfu_path(@zangfu), class: "btn btn-info" %>
+        </div>
+      </div>
+    </div>
+</div>

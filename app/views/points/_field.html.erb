@@ -1,0 +1,30 @@
+<%
+    # Required local params
+  # @param user [User] - an instance of User to render the form for.
+%>
+
+<div class="point-info">
+    <p class="data-row">
+    <span class="data-name">Name :</span>
+    <span class="data-value"><%= point.name_eng %></span>
+    <span class="data-value"><%= point.name_ko %></span>
+    </p>
+    <p class="data-row">
+    <span class="data-name">Location :</span>
+    <span class="data-value"><%= point.location %></span>
+    </p>
+
+    <p class="data-row">
+    <span class="data-name">Indications :</span>
+    <span class="data-value"><%= point.indications.pluck(:name_eng).join(", ") %></span>
+    </p>
+
+    <p class="data-row">
+    <span class="data-name">Created on:</span>
+    <span class="data-value"><%= point.created_at %></span>
+    </p>
+    <p class="data-row">
+    <span class="data-name">Last updated on:</span>
+    <span class="data-value"><%= point.updated_at %></span>
+    </p>
+  </div>

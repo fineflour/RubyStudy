@@ -1,0 +1,31 @@
+<%
+# Required local params
+# @param user [User] - an instance of User to render the form for.
+%>
+
+<div class="disease-info">
+   <p class="data-row">
+    <span class="data-name">Name :</span>
+    <span class="data-value"><%= disease.name_eng %></span>
+
+  </p>
+
+  <p class="data-row">
+    <span class="data-name">Name :</span>
+    <span class="data-value"><%= disease.name_ko %></span>
+  </p>
+  
+  <p class="data-row">
+    <span class="data-name">Description:</span>
+    <span class="data-value"><%= disease.description %></span>
+  </p>
+
+ <p class="data-row">
+    <span class="data-name">Created on:</span>
+    <span class="data-value"><%= disease.created_at %></span>
+  </p>
+  <p class="data-row">
+    <span class="data-name">Last updated on:</span>
+    <span class="data-value"><%= disease.updated_at %></span>
+  </p>
+</div>

@@ -1,0 +1,28 @@
+<%
+    # Required local params
+  # @param user [User] an instance of User to render the form for.
+%>
+
+<%= simple_form_for indication, 
+  html: {class: "form-horizontal" },
+  wrapper: :horizontal_form,
+  wrapper_mappings: {
+  } do |f| %>
+
+  <div class="row">
+    <div class="col-xs-18 col-sm-8 col-md-10">
+      <fieldset>
+        <%= f.input :name_eng, :input_html => {:size => 200, :maxlength => 255} %>
+        <%= f.input :name_ko, :input_html => {:size => 200, :maxlength => 255} %>
+        <%= f.input :description, as: :text %>
+      </fieldset>
+    </div>
+  </div>
+  </br>
+  <div class="col-xs-18 col-sm-8 col-md-8">
+    <div class="button-padding pull-right">
+      <%= link_to "Back to index", indications_path, class: "btn btn-default" %>
+      <%= f.submit "Submit", class: "btn btn-info" %>
+    </div>
+  </div>
+<% end %>

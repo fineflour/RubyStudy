@@ -1,0 +1,16 @@
+<div class="col-md-10 col-xs-12 col-sm-9">
+  <div id="user-show">
+    <div class="page-header">
+      <h3><%= @indication.name_eng %></h3>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div><%= render partial: "field", locals: { indication: @indication} %></div>
+        <div class="button-padding pull-right">
+          <%= link_to "Back to index", indications_path, class: "btn btn-default" %>
+          <%= link_to "Edit", edit_indication_path(@indication), class: "btn btn-info" %>
+        </div>
+      </div>
+    </div>
+</div>
