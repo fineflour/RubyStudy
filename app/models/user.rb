@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable
   has_many :user_roles
   has_many :user_roles, :dependent => :destroy
-  has_and_belongs_to_many :roles, :through => :user_roles
+  has_many :roles, :through => :user_roles
+  #attr_accessor :login
 
   ROLES = Role.select('name, id')
   ADMIN_ROLE = "Administrator"
@@ -20,7 +21,8 @@ class User < ActiveRecord::Base
   end
 
   def set_default_role
-    self.role ||= :user
+    #binding.pry
+    self.roles.name ||= :user
   end
 
   def generate_token(column)

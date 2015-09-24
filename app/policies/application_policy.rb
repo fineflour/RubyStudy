@@ -16,11 +16,7 @@ class ApplicationPolicy
   end
 
   def create?
-    if u.admin
-      true
-    else
-      false
-    end
+   false
   end
 
   def new?

@@ -14,6 +14,9 @@ gem 'lol_dba'
 
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
+gem 'devise', '3.4.1'
+gem 'keyword_search'
+gem 'cancan'
 
 
 gem 'web-console', '~> 2.0'
@@ -55,10 +58,7 @@ gem 'web-console', '~> 2.0'
   gem 'browser-timezone-rails'
 
   gem 'paper_trail'
-  gem 'devise', '3.4.1'
-  gem 'keyword_search'
-
-  
+    
  group :production, :staging do
   gem 'unicorn'
   gem 'unicorn-worker-killer'
@@ -99,5 +99,4 @@ group :test do
   gem 'simplecov', :require => false # test coverage
   gem 'webmock' # Library for stubbing and setting expectations on HTTP request in Ruby
   gem 'sinatra'
-  gem 'cancan'
 end
