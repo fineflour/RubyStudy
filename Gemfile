@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 ruby '2.2.2'
 gem 'rails', '4.2.1'
@@ -16,7 +15,6 @@ gem 'delayed_job_active_record'
 gem 'delayed_job_web'
 gem 'devise', '3.4.1'
 gem 'keyword_search'
-gem 'cancan'
 
 
 gem 'web-console', '~> 2.0'
@@ -57,6 +55,7 @@ gem 'web-console', '~> 2.0'
 
   gem 'browser-timezone-rails'
 
+#Tracking Version
   gem 'paper_trail'
     
  group :production, :staging do

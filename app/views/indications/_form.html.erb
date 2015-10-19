@@ -9,20 +9,31 @@
   wrapper_mappings: {
   } do |f| %>
 
-  <div class="row">
-    <div class="col-xs-18 col-sm-8 col-md-10">
-      <fieldset>
+  <div class="col-xs-18 col-sm-8 col-md-12 row text-right">
+    <%= link_to "Back to index", indications_path, class: "btn btn-default" %>
+    <%= f.submit "Submit", class: "btn btn-info" %>
+  </div>
+  </br>
+  </br>
+  <div class="col-xs-18 col-sm-8 col-md-12 row">
+    <fieldset >
+      <div class="col-md-10">
+        <%= f.association :zangfus, as: :check_boxes, collection: Zangfu.order(:name_eng), :label_method => :name_eng, :value_method => :id,  :item_wrapper_class => 'inline'%>
+        <hr>
         <%= f.input :name_eng, :input_html => {:size => 200, :maxlength => 255} %>
         <%= f.input :name_ko, :input_html => {:size => 200, :maxlength => 255} %>
         <%= f.input :description, as: :text %>
-      </fieldset>
-    </div>
-  </div>
-  </br>
-  <div class="col-xs-18 col-sm-8 col-md-8">
-    <div class="button-padding pull-right">
+        <hr> 
+        <label>Subindication </label>
+        <%= link_to "", new_subindication_path, class: "glyphicon glyphicon-plus" %>
+        <%= f.association :subindications, as: :check_boxes, label: false, collection: Subindication.order(:name_eng), :label_method => :name_eng, :value_method => :id %>
+      </div>
+    </fieldset>
+    </br>
+    </br>
+    <div class="col-xs-18 col-sm-8 col-md-12 row text-right">
       <%= link_to "Back to index", indications_path, class: "btn btn-default" %>
       <%= f.submit "Submit", class: "btn btn-info" %>
     </div>
+  <% end %>
   </div>
-<% end %>

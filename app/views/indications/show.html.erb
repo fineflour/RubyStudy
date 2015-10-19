@@ -5,7 +5,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-10">
         <div><%= render partial: "field", locals: { indication: @indication} %></div>
         <div class="button-padding pull-right">
           <%= link_to "Back to index", indications_path, class: "btn btn-default" %>
@@ -13,4 +13,11 @@
         </div>
       </div>
     </div>
-</div>
+    <div class="row">
+      <div class="col-md-6">
+        <% @subindications.each do |i| %>
+          <%= i.name_eng %>
+      <% end %>
+      </div>
+    </div>
+  </div>

@@ -4,6 +4,8 @@ class IndicationsController < ApplicationController
   end
   def show
     @indication = Indication.find(params[:id])
+    @subindications = @indication.subindications 
+
   end
 
 
@@ -48,6 +50,6 @@ class IndicationsController < ApplicationController
   end
 
   def indication_params
-    params.require(:indication).permit(:name_eng, :name_ko, :description)
+    params.require(:indication).permit(:name_eng, :name_ko, :description, :zangfu_ids => [], :subindication_ids => [])
   end
 end

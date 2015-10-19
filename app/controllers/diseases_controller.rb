@@ -23,7 +23,7 @@ class DiseasesController < ApplicationController
   end
 
   def create
-    @disease = Disease.new
+    @disease = Disease.new(disease_params)
     if @disease.save
       flash[:error] = "Disease is not created."
       redirect_to @disease, notice: "Disease created successfully!"

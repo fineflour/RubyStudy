@@ -5,23 +5,16 @@
 
   <div class="row">
     <div class="col-md-12">
-          <%= link_to "Add new", new_indication_path, class: "btn btn_info" %>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <%#= link_to "Add new user", new_material_path, class: "btn btn-info" %>
+          <%= link_to "Add new", new_indication_path, class: "btn btn-info" %>
         </div>
-
         <div class="table-responsive">
           <table id="indication" class="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>Name</th>
-              </tr>
-            </thead>
             <tbody>
               <% @indications.each do |i| %>
                 <tr id="indication-<%= i.id %>">
-                  <td><%= i.name_eng %></td>
+                  <td><%=link_to i.name_eng, indication_path(i) %></td>
                   <td><%= i.name_ko %></td>
                   <td>
                     <%= link_to "Edit", edit_indication_path(i) %> | 
@@ -33,7 +26,7 @@
           </table>
         </div>
       <span class="pull-right">
-        <%= will_paginate @zangfus, renderer: BootstrapPagination::Rails %>
+        <%= will_paginate @indications, renderer: BootstrapPagination::Rails %>
       </span>
       </div>
     </div>

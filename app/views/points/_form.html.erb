@@ -15,7 +15,13 @@
         <%= f.input :name_eng, :input_html => {:size => 200, :maxlength => 255} %>
         <%= f.input :name_ko, :input_html => {:size => 200, :maxlength => 255} %>
         <%= f.input :location, as: :text, :input_html => {:rows => 6} %>
-        <%= f.association :indications,as: :check_boxes, collection: Indication.active.order(:name_eng), :label_method => :name_eng, :value_method => :id %>
+        
+        <div class="col-md-10">
+        <hr> 
+        <label>Indication </label>
+        <%= link_to "", new_subindication_path, class: "glyphicon glyphicon-plus" %>
+        <%= f.association :indications, as: :check_boxes, label: false, collection: Indication.order(:name_eng), :label_method => :name_eng, :value_method => :id %>
+      </div>
       </fieldset>
     </div>
   </div>

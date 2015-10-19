@@ -21,8 +21,7 @@ class User < ActiveRecord::Base
   end
 
   def set_default_role
-    #binding.pry
-    self.roles.name ||= :user
+    self.roles.name ||="User" 
   end
 
   def generate_token(column)

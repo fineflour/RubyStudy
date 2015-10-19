@@ -1,6 +1,6 @@
 class PointsController < ApplicationController
   def index
-    @points = Point.paginate(page: params[:page])
+    @points = Point.order(:id)
   end
 
   def show

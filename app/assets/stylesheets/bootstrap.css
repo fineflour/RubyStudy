@@ -6200,4 +6200,14 @@ button.close {
     display: none !important;
   }
 }
+
 /*# sourceMappingURL=bootstrap.css.map */
+
+/***********My Custom CSS ********************/
+.checkbox_container input {
+    display: inline;
+}
+
+.optional {
+  white-space: nowrap;
+}
