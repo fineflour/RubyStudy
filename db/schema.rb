@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151006225115) do
+ActiveRecord::Schema.define(version: 20151026180455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,12 +26,47 @@ ActiveRecord::Schema.define(version: 20151006225115) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "diseas_categories", force: :cascade do |t|
+    t.integer  "disease_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "diseas_categories", ["category_id"], name: "index_diseas_categories_on_category_id", using: :btree
+  add_index "diseas_categories", ["disease_id"], name: "index_diseas_categories_on_disease_id", using: :btree
+
+  create_table "disease_categories", force: :cascade do |t|
+    t.integer  "disease_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "disease_categories", ["category_id"], name: "index_disease_categories_on_category_id", using: :btree
+  add_index "disease_categories", ["disease_id"], name: "index_disease_categories_on_disease_id", using: :btree
+
+  create_table "disease_subindications", force: :cascade do |t|
+    t.integer  "disease_id"
+    t.integer  "subindication_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "disease_subindications", ["disease_id"], name: "index_disease_subindications_on_disease_id", using: :btree
+  add_index "disease_subindications", ["subindication_id"], name: "index_disease_subindications_on_subindication_id", using: :btree
+
   create_table "diseases", force: :cascade do |t|
     t.string   "name_eng"
     t.string   "name_ko"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "channel"
+    t.string   "organ"
+    t.string   "western_dx"
+    t.string   "tcm_dx"
+    t.string   "name_tcm"
   end
 
   create_table "formular_indications", force: :cascade do |t|
@@ -68,7 +103,6 @@ ActiveRecord::Schema.define(version: 20151006225115) do
 
   create_table "herbalformulars", force: :cascade do |t|
     t.integer  "category_id"
-    t.integer  "subcategory"
     t.string   "name_eng"
     t.string   "name_ko"
     t.string   "name_la"
@@ -80,6 +114,10 @@ ActiveRecord::Schema.define(version: 20151006225115) do
     t.string   "preparation"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "subcategory_id"
+    t.string   "channel"
+    t.string   "westernuse"
+    t.string   "note"
   end
 
   add_index "herbalformulars", ["category_id"], name: "index_herbalformulars_on_category_id", using: :btree
@@ -97,8 +135,8 @@ ActiveRecord::Schema.define(version: 20151006225115) do
     t.string   "contraindication"
     t.string   "westernuse"
     t.string   "qty"
-    t.string   "actions"
-    t.string   "notes"
+    t.string   "action"
+    t.string   "note"
   end
 
   add_index "herbs", ["category_id"], name: "index_herbs_on_category_id", using: :btree
@@ -194,16 +232,41 @@ ActiveRecord::Schema.define(version: 20151006225115) do
   add_index "zangfu_indications", ["indication_id"], name: "index_zangfu_indications_on_indication_id", using: :btree
   add_index "zangfu_indications", ["zangfu_id"], name: "index_zangfu_indications_on_zangfu_id", using: :btree
 
+  create_table "zangfu_subindications", force: :cascade do |t|
+    t.integer  "zangfu_id"
+    t.integer  "subindication_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "zangfu_subindications", ["subindication_id"], name: "index_zangfu_subindications_on_subindication_id", using: :btree
+  add_index "zangfu_subindications", ["zangfu_id"], name: "index_zangfu_subindications_on_zangfu_id", using: :btree
+
   create_table "zangfus", force: :cascade do |t|
     t.string   "name_eng"
     t.string   "name_ko"
-    t.string   "meridian_eng"
-    t.string   "meridian_ko"
+    t.string   "channel_ko"
     t.string   "description"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "short_name"
+    t.string   "channel_eng"
+    t.string   "five_element"
+    t.string   "property"
+    t.string   "emotion"
+    t.string   "season"
+    t.string   "western"
+    t.string   "note"
+    t.string   "yinyang"
+    t.integer  "order"
   end
 
+  add_foreign_key "diseas_categories", "categories"
+  add_foreign_key "diseas_categories", "diseases"
+  add_foreign_key "disease_categories", "categories"
+  add_foreign_key "disease_categories", "diseases"
+  add_foreign_key "disease_subindications", "diseases"
+  add_foreign_key "disease_subindications", "subindications"
   add_foreign_key "formular_indications", "herbalformulars"
   add_foreign_key "formular_indications", "indications"
   add_foreign_key "herb_formulars", "herbalformulars"
@@ -220,4 +283,6 @@ ActiveRecord::Schema.define(version: 20151006225115) do
   add_foreign_key "user_roles", "users"
   add_foreign_key "zangfu_indications", "indications"
   add_foreign_key "zangfu_indications", "zangfus"
+  add_foreign_key "zangfu_subindications", "subindications"
+  add_foreign_key "zangfu_subindications", "zangfus"
 end

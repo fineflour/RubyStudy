@@ -6,12 +6,11 @@
 <%= stylesheet_link_tag    "application", "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" %>
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 <%= csrf_meta_tags %>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body>
 
-
 <div class="page-container">
-
   <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -58,7 +57,7 @@
     <% end %>
     </div><!--/span-->
     <!-- flash notice -->
-    <div class="col-xs-12 col-sm-9">
+    <div class="col-xs-10 col-md-8 col-sm-8">
       <% if flash[:notice] %>
         <div class="alert alert-success top-general-alert">
         <a type="button" class="close" data-dismiss="alert">&times;</a>
@@ -66,7 +65,7 @@
       </div>
     <% elsif flash[:error] %>
         <div class="alert alert-danger top-general-alert">
-        <a type="button" class="close" data-dismiss="alert">&times;</a>
+        <a type="button" class="close" data-dismiss="alert">&itimes;</a>
         <%= flash[:error] %>
       </div>
     <% elsif flash[:alert] %>

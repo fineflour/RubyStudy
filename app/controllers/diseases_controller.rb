@@ -5,10 +5,37 @@ class DiseasesController < ApplicationController
 
   def show
     @disease = Disease.find(params[:id])
+    @subindications = Disease.get_subindications_by_id(params[:id])
   end
 
   def new
+    @indications = Indication.all
     @disease = Disease.new
+  end
+
+  def create
+    @disease = Disease.new(disease_params)
+    if @disease.save
+      flash[:error] = "Disease is not created."
+      redirect_to @disease, notice: "Disease created successfully!"
+    else
+      flash[:error] = "Disease could not be saved."
+      render :new
+    end
+  end
+
+
+  def edit
+    @disease = Disease.find(params[:id])
+    @indications = Indication.all
+    @subindications = Indication.get_subindications_by_id(params[:indication_id])
+  end
+
+  def update_subindication 
+    @subindications = Indication.get_subindications_by_id(params[:indication_id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   def update
@@ -22,21 +49,6 @@ class DiseasesController < ApplicationController
     end
   end
 
-  def create
-    @disease = Disease.new(disease_params)
-    if @disease.save
-      flash[:error] = "Disease is not created."
-      redirect_to @disease, notice: "Disease created successfully!"
-    else
-      flash[:error] = "Disease could not be saved."
-      render :new
-    end
-
-  end
-
-  def edit
-    @disease = Disease.find(params[:id])
-  end
 
   def destroy
     @disease = Disease.find(params[:id]).destroy

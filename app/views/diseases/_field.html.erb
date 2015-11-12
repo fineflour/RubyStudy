@@ -4,16 +4,37 @@
 %>
 
 <div class="disease-info">
+
    <p class="data-row">
     <span class="data-name">Name :</span>
     <span class="data-value"><%= disease.name_eng %></span>
-
   </p>
-
   <p class="data-row">
     <span class="data-name">Name :</span>
     <span class="data-value"><%= disease.name_ko %></span>
   </p>
+ <p class="data-row">
+    <span class="data-name">TCM Name :</span>
+    <span class="data-value"><%= disease.name_tcm %></span>
+  </p>
+
+ <p class="data-row">
+    <span class="data-name">Organ :</span>
+    <span class="data-value"><%= disease.organ %></span>
+  </p>
+
+   <p class="data-row">
+    <span class="data-name">Organ :</span>
+    <span class="data-value"><%= disease.western_dx %></span>
+  </p>
+
+
+
+   <p class="data-row">
+    <span class="data-name">Description:</span>
+    <span class="data-value"><%= disease.description %></span>
+  </p>
+
   
   <p class="data-row">
     <span class="data-name">Description:</span>
@@ -24,6 +45,7 @@
     <span class="data-name">Created on:</span>
     <span class="data-value"><%= disease.created_at %></span>
   </p>
+
   <p class="data-row">
     <span class="data-name">Last updated on:</span>
     <span class="data-value"><%= disease.updated_at %></span>

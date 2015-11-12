@@ -9,31 +9,39 @@
   wrapper_mappings: {
   } do |f| %>
 
-  <div class="col-xs-18 col-sm-8 col-md-12 row text-right">
+  <div class="button-container row text-right">
     <%= link_to "Back to index", indications_path, class: "btn btn-default" %>
     <%= f.submit "Submit", class: "btn btn-info" %>
   </div>
-  </br>
-  </br>
-  <div class="col-xs-18 col-sm-8 col-md-12 row">
+  <div class="row">
     <fieldset >
+      <div class="col-md-10 text-left form-inline">
+        <label>Related Organs</label>
+        <%= f.association :zangfus, as: :check_boxes, collection: Zangfu.order(:name_eng), label: false, :label_method => :name_eng, :value_method => :id,  :item_wrapper_class => 'checkbox-container'%>
+      </div>
+    </fieldset>
+    <fieldset>
       <div class="col-md-10">
-        <%= f.association :zangfus, as: :check_boxes, collection: Zangfu.order(:name_eng), :label_method => :name_eng, :value_method => :id,  :item_wrapper_class => 'inline'%>
-        <hr>
         <%= f.input :name_eng, :input_html => {:size => 200, :maxlength => 255} %>
         <%= f.input :name_ko, :input_html => {:size => 200, :maxlength => 255} %>
         <%= f.input :description, as: :text %>
-        <hr> 
-        <label>Subindication </label>
-        <%= link_to "", new_subindication_path, class: "glyphicon glyphicon-plus" %>
-        <%= f.association :subindications, as: :check_boxes, label: false, collection: Subindication.order(:name_eng), :label_method => :name_eng, :value_method => :id %>
       </div>
     </fieldset>
-    </br>
-    </br>
-    <div class="col-xs-18 col-sm-8 col-md-12 row text-right">
-      <%= link_to "Back to index", indications_path, class: "btn btn-default" %>
-      <%= f.submit "Submit", class: "btn btn-info" %>
-    </div>
-  <% end %>
+    <fieldset>
+      <div class="panel panel-default">
+        <div class="panel-heading"><label>Sub Indications</label> <%= link_to "", new_subindication_path, class: "glyphicon glyphicon-plus" %>
+
+      </div>
+        <div class="panel-body">
+          <div class="col-md-10 text-left form-inline">
+            <%= f.association :subindications, as: :check_boxes, label: false, collection: Subindication.order(:name_eng), :label_method => :name_eng, :value_method => :id, :item_wrapper_class => 'checkbox-container' %>
+          </div>
+        </div>
+      </div>
+    </fieldset>
   </div>
+  <div class="button-container text-right">
+    <%= link_to "Back to index", indications_path, class: "btn btn-default" %>
+    <%= f.submit "Submit", class: "btn btn-info" %>
+  </div>
+<% end %>

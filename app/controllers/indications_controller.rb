@@ -5,6 +5,7 @@ class IndicationsController < ApplicationController
   def show
     @indication = Indication.find(params[:id])
     @subindications = @indication.subindications 
+    @zangfus = @indication.zangfus
 
   end
 

@@ -15,12 +15,21 @@ class Indication < ActiveRecord::Base
   accepts_nested_attributes_for :zangfu_indications
   accepts_nested_attributes_for :indication_subindications
   scope :active, -> { where active: true }
+
   def self.order_by_name_eng
     Indication.select('name_eng').order(name_eng: :asc)
   end
 
   def self.order_by_name_ko
     Indication.order(name_ko: :asc)
+  end
+
+  def self.get_subindications_by_id(indication_id)
+    Subindication.joins(:indications).where("indication_id = ?", indication_id)
+  end
+
+  def self.get_indications_by_sub_id(subindication_id)
+    self.joins(:subindications).where("subindication_id = ?", subindication_id)
   end
 
 

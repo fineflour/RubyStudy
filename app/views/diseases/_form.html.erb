@@ -1,5 +1,5 @@
 <%
-    # Required local params
+  # Required local params
   # @param user [User] an instance of User to render the form for.
 %>
 
@@ -9,21 +9,45 @@
   wrapper_mappings: {
   } do |f| %>
 
+  <div class="button-container row text-right">
+    <%= link_to "Back to index", diseases_path, class: "btn btn-default" %>
+    <%= f.submit "Submit", class: "btn btn-info" %>
+  </div>
   <div class="row">
-    <div class="col-xs-24 col-sm-12 col-md-12">
-      <fieldset>
-        <%= f.input :name_eng, :input_html => {:size => 200, :maxlength => 255} %>
-        <%= f.input :name_ko, :input_html => {:size => 200, :maxlength => 255} %>
+    <fieldset >
+      <div class="col-md-10">
+        <%= f.input :categories, collection: Category.for_disease, prompt: "Select a Category", :label_method => :name_eng, :value_method => :id, :input_html=> {style: 'inline'}, multiple: false%>
+      </fieldset >
+
+      <fieldset >
+        <div class="col-md-10 form-inline">
+          <label>Related Organs </label>
+          <%= f.input :channel, as: :check_boxes, collection: Zangfu.channel , :item_wrapper_class => 'checkbox-container', :label_method => :short_name, :value_method => :id, label: false%> 
+        </div>
       </fieldset>
-      </br>
-      </br>
       <fieldset>
-        <%= f.input :description, as: :text %>
+        <div class="col-md-10">
+          <%= f.input :name_eng, :input_html => {:size => 200, :maxlength => 255} %>
+          <%= f.input :name_ko, :input_html => {:size => 200, :maxlength => 255} %>
+          <%= f.input :name_tcm, :input_html => {:size => 200, :maxlength => 255} %>
+          <%= f.input :description, as: :text %>
+        </div>
+      </fieldset>
+      <fieldset>
+        <p class="data-row">
+        <span class="data-value">
+          <%= f.input :indication, collection: Indication.order(:name_eng), prompt: "Select an indication", :label_method => :name_eng, :value_method => :id, :selected => :indication_id, :input_html => {style: "inline"} %>
+          <p id="subindication_field">
+          <%= f.input :subindications, collection: @subindications, prompt: "Select an indication", :input_html => {style: "inline"} %>
+
+          <%= f.input_field :indication, collection: Indication.all.pluck(:name_eng, :id), class: 'form-control legal-service lender_field_code', prompt: 'Please Select Indication', disabled: (f.object.new_record? ? false : true ) %>
+
+          <%= f.input_field :subindications, collection: Subindication.joins(:indications).where("indication_id = ?", params[:indication_id_id]).order(name_eng: :asc), class: 'form-control legal-service lender_field_name ', prompt: 'Please Select', id: "indication_id" %>
+          </p>
+        </span>
       </fieldset>
     </div>
-  </div>
-  </br>
-  <div class="col-xs-24 col-sm-12 col-md-12">
+    </br>
     <div class="button-padding pull-right">
       <%= link_to "Back to index", diseases_path, class: "btn btn-default" %>
       <%= f.submit "Submit", class: "btn btn-info" %>

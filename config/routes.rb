@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'javascripts/dynamic_subindications'
+
   devise_for :users
   #, :skip => [:registrations]
   j

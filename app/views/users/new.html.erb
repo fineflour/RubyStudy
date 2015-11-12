@@ -1,7 +1,10 @@
-<h2>Resend unlock instructions</h2>
+<div class="right-panel">
+  <div class="page-header">
+    <h2>Resend unlock instructions</h2>
+  </div>
 
-<%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+  <%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+    <%= f.error_notification %>
   <%= f.full_error :unlock_token %>
 
   <div class="form-inputs">
@@ -13,4 +16,5 @@
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+  <%= render "users/shared/links" %>
+</div>

@@ -1,4 +1,4 @@
-<div class="col-md-10 col-xs-12 col-sm-9">
+<div class="right-panel">
   <div class="page-header">
     <h1>Disease</h1>
   </div>
@@ -20,7 +20,7 @@
             <tbody>
               <% @diseases.each do |i| %>
                 <tr id="disease-<%= i.id %>">
-                  <td><%= i.name_eng %></td>
+                  <td><%= link_to i.name_eng, disease_path(i) %></td>
                   <td>
                     <%= link_to "Edit", edit_disease_path(i) %> | 
                     <%= link_to "Delete", disease_path(i), method: :delete, data: { confirm: 'Are you sure that you want to delete?'} %>

@@ -13,4 +13,17 @@ html {
 body {
   margin: 0;
 }
+.right-panel {
+  width:  90%;
+  padding: 20px;
+}
+
+.button-container {
+  padding: 10px;
+}
+
+.checkbox-container {
+  padding: 5px;
+}
+
 

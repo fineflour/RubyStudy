@@ -7,16 +7,15 @@
 
 body {
   padding-top: 51px;
+  margin: 0;
+}
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
 }
 
-/*
- * Style tweaks
- * --------------------------------------------------
- */
-footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
+
 
 
 
@@ -48,4 +47,44 @@ footer {
     margin-left: 12px;
   }
 }
+ /* //Off Canvas **/
 
+.navbar-header {
+  background:  #333333; 
+}
+.checkbox-inline.no_indent,
+.checkbox-inline.no_indent+.checkbox-inline.no_indent {
+  margin-left: 2;
+  margin-right: 20px;
+}
+
+/*
+ * Style tweaks
+ * --------------------------------------------------
+ */
+footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.button-container {
+  padding-left: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.checkbox-container {
+  padding: 5px;
+}
+.right-panel {
+  width:  90%;
+  padding: 20px;
+}
+.data-name {
+  font-weight: bold;
+  padding-right : 10px;
+}
+.top-general-alert {
+  text-align: center;
+  padding: 8px;
+  margin: 4px;
+}
