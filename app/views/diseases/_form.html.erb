@@ -1,10 +1,11 @@
 <%
-  # Required local params
+    # Required local params
   # @param user [User] an instance of User to render the form for.
+  ##form_for url: {action: "show"}, html: {method: "get"} do |f|
 %>
 
-<%= simple_form_for disease, 
-  html: {class: "form-horizontal" },
+<%= simple_form_for disease,
+  html: {class: "form-horizontal"},
   wrapper: :horizontal_form,
   wrapper_mappings: {
   } do |f| %>
@@ -36,21 +37,27 @@
       <fieldset>
         <p class="data-row">
         <span class="data-value">
-          <%= f.input :indication, collection: Indication.order(:name_eng), prompt: "Select an indication", :label_method => :name_eng, :value_method => :id, :selected => :indication_id, :input_html => {style: "inline"} %>
-          <p id="subindication_field">
-          <%= f.input :subindications, collection: @subindications, prompt: "Select an indication", :input_html => {style: "inline"} %>
-
-          <%= f.input_field :indication, collection: Indication.all.pluck(:name_eng, :id), class: 'form-control legal-service lender_field_code', prompt: 'Please Select Indication', disabled: (f.object.new_record? ? false : true ) %>
-
-          <%= f.input_field :subindications, collection: Subindication.joins(:indications).where("indication_id = ?", params[:indication_id_id]).order(name_eng: :asc), class: 'form-control legal-service lender_field_name ', prompt: 'Please Select', id: "indication_id" %>
-          </p>
+          <%= f.select :indication_id, options_for_select(@list_indications.collect { |i|
+            [i.name_eng.titleize, i.id] }, 1), {}, { id: 'indications_select' } %>
+          <%= f.select :subindication_id, options_for_select(@list_subindications.collect { |s|
+            [s.name_eng.titleize, s.id] }, 0), {}, { id: 'subindications_select' } %>
         </span>
-      </fieldset>
+            <%= hidden_field_tag :disease_id, @disease_id %>
+          <%= link_to "Add", "#", :id => 'btn_add_subindication_'+ params[:id].to_s, class: "btn btn-default btn_add_subindication"%>
+          </p>
+
+        </fieldset>
+        <div class="panel panel-default">
+          <div class="panel-heading"><label>Sub Indications</label></div>
+
+          <%= render partial: "subindication", locals: { subindications: @disease.subindications} %>            
+      </div>
+      </div>
+
+      </br>
+      <div class="button-padding pull-right">
+        <%= link_to "Back to index", diseases_path, class: "btn btn-default" %>
+        <%= f.submit "Submit", class: "btn btn-info" %>
+      </div>
     </div>
-    </br>
-    <div class="button-padding pull-right">
-      <%= link_to "Back to index", diseases_path, class: "btn btn-default" %>
-      <%= f.submit "Submit", class: "btn btn-info" %>
-    </div>
-  </div>
-<% end %>
+  <% end %>

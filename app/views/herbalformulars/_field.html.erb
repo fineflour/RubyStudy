@@ -1,0 +1,26 @@
+<%
+# Required local params
+# @param user [User] - an instance of User to render the form for.
+%>
+
+<div class="user-info">
+  <p class="data-row">
+    <span class="data-name">Indication:</span>
+    <span class="data-value"><%= indication.name_eng %></span>
+    <span class="data-value"><%= indication.name_ko %></span>
+  </p>
+
+  <p class="data-row">
+    <span class="data-name">Description</span>
+    <span class="data-value"><%= indication.description %></span>
+  </p>
+
+ <p class="data-row">
+    <span class="data-name">Created on:</span>
+    <span class="data-value"><%= indication.created_at %></span>
+  </p>
+  <p class="data-row">
+    <span class="data-name">Last updated on:</span>
+    <span class="data-value"><%= indication.updated_at %></span>
+  </p>
+</div>

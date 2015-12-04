@@ -18,21 +18,21 @@
               </tr>
             </thead>
             <tbody>
-              <% @diseases.each do |i| %>
-                <tr id="disease-<%= i.id %>">
-                  <td><%= link_to i.name_eng, disease_path(i) %></td>
-                  <td>
-                    <%= link_to "Edit", edit_disease_path(i) %> | 
-                    <%= link_to "Delete", disease_path(i), method: :delete, data: { confirm: 'Are you sure that you want to delete?'} %>
-                  </td>
-                </tr>
-              <% end %>
+            <% @diseases.each do |i| %>
+              <tr id="disease-<%= i.id %>">
+              <td><%= link_to i.name_eng, disease_path(i) %></td>
+              <td>
+                <%= link_to "Edit", edit_disease_path(i) %> | 
+                <%= link_to "Delete", disease_path(i), method: :delete, data: { confirm: 'Are you sure that you want to delete?'} %>
+              </td>
+            </tr>
+          <% end %>
             </tbody>
           </table>
         </div>
-      <span class="pull-right">
-        <%= will_paginate @disease, renderer: BootstrapPagination::Rails %>
-      </span>
+        <span class="pull-right">
+          <%= will_paginate @disease, renderer: BootstrapPagination::Rails %>
+        </span>
       </div>
     </div>
   </div>

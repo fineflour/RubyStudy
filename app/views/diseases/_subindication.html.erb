@@ -1,0 +1,19 @@
+<%
+    # Required local params
+  # @param user [User] an instance of User to render the form for.
+  ##form_for url: {action: "show"}, html: {method: "get"} do |f|
+%>
+  <div id="subindication_list">
+  <p class="data-row">
+  <% @subindications.each do |i| %>
+    <%= hidden_field_tag :disease_id, @disease_id %>
+    <%= hidden_field_tag :rm_subindication_id, i.id %>
+    <span class="data-value"><%= i.name_eng %>
+  <%= link_to '-', "#", :id=>'btnRemoveSubindication_'+ i.id.to_s, class: "btn btn-default"%>
+  </span> 
+  </p>
+<% end %>
+</div>
+
+
+

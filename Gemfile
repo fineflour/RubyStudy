@@ -7,7 +7,7 @@ gem 'rails', '4.2.1'
 gem 'pg'
 gem 'pg_search'
 gem 'pundit'
-
+gem 'react-rails', '~> 1.5.0'
 
 gem 'lol_dba'
 

@@ -1,0 +1,13 @@
+<div class="right-panel">
+  <div class="page-header">
+    <h3><%= @subindication.name_eng %></h3>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <div><%= render partial: "field", locals: { subindication: @subindication} %></div>
+      <div class="button-container">
+        <%= link_to "Back to index", subindications_path, class: "btn btn-default" %>
+        <%= link_to "Edit", edit_subindication_path(@subindication), class: "btn btn-info" %>
+      </div>
+    </div>
+  </div>

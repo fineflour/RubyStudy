@@ -4,13 +4,16 @@ class Disease < ActiveRecord::Base
   has_many :subindications, through: :disease_subindications
   has_many :disease_subindications
 
-  attr_accessor :indication
-  def self.get_subindications_by_id(disease_id)
-    Subindication.joins(:disease).where("disease_id = ?", disease_id)
-  end
+  attr_accessor :indication_id
+  attr_accessor :subindication_id
 
   def self.get_subindication_by_id(id)
+    #Disease.find(id).subindications.all
     self.joins(:subindications).where("disease_id = ?", id)
+  end
+
+  def self.subindication_name_eng
+    test
   end
 
 

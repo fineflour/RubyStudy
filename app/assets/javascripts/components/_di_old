@@ -1,0 +1,20 @@
+var HelloWorld = React.createClass({
+  render: function() {
+    return (
+      <div className='Subindication'>
+      {this.props.name_eng}
+      Hello, world!
+      </div>
+      );
+  }
+});
+
+var ready = function () {
+  ReactDOM.render(
+      <HelloWorld />,
+      document.getElementById('subindication_list')
+      );
+};
+
+
+$(document).ready(ready);

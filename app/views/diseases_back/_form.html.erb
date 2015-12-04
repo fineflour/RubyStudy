@@ -1,0 +1,64 @@
+<%
+    # Required local params
+  # @param user [User] an instance of User to render the form for.
+%>
+
+<%= simple_form_for disease, 
+  html: {class: "form-horizontal", method: "get" },
+  wrapper: :horizontal_form,
+  wrapper_mappings: {
+  } do |f| %>
+
+  <div class="button-container row text-right">
+    <%= link_to "Back to index", diseases_path, class: "btn btn-default" %>
+    <%= f.submit "Submit", class: "btn btn-info" %>
+  </div>
+  <div class="row">
+    <fieldset >
+      <div class="col-md-10">
+        <%= f.input :categories, collection: Category.for_disease, prompt: "Select a Category", :label_method => :name_eng, :value_method => :id, :input_html=> {style: 'inline'}, multiple: false%>
+      </fieldset >
+
+      <fieldset >
+        <div class="col-md-10 form-inline">
+          <label>Related Organs </label>
+          <%= f.input :channel, as: :check_boxes, collection: Zangfu.channel , :item_wrapper_class => 'checkbox-container', :label_method => :short_name, :value_method => :id, label: false%> 
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="col-md-10">
+          <%= f.input :name_eng, :input_html => {:size => 200, :maxlength => 255} %>
+          <%= f.input :name_ko, :input_html => {:size => 200, :maxlength => 255} %>
+          <%= f.input :name_tcm, :input_html => {:size => 200, :maxlength => 255} %>
+          <%= f.input :description, as: :text %>
+        </div>
+      </fieldset>
+      <fieldset>
+        <p class="data-row">
+        <span class="data-value">
+            <%= f.select :indication_id, options_for_select(@indications.collect { |i|
+              [i.name_eng.titleize, i.id] }, 1), {}, { id: 'indications_select' } %>
+            <%= f.select :subindication_id, options_for_select(@subindications.collect { |s|
+              [s.name_eng.titleize, s.id] }, 0), {}, { id: 'subindications_select' } %>
+            <%= f.submit "Go!" %>
+            </span>
+            </p>
+          </span>
+        </fieldset>
+        <div class="panel panel-default">
+          <div class="panel-heading"><label>Sub Indications</label></div>
+          <div class="panel-body">
+            <% @subindications.each do |i| %>
+              <li> <%= i.name_eng %></li>
+          <% end %>
+          </div>
+        </div>
+      </div>
+
+      </br>
+      <div class="button-padding pull-right">
+        <%= link_to "Back to index", diseases_path, class: "btn btn-default" %>
+        <%= f.submit "Submit", class: "btn btn-info" %>
+      </div>
+    </div>
+  <% end %>

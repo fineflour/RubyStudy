@@ -1,0 +1,58 @@
+<%
+# Required local params
+# @param user [User] an instance of User to render the form for.
+%>
+
+<%= simple_form_for herb, 
+  html: {class: "form-horizontal" },
+  wrapper: :horizontal_form,
+  wrapper_mappings: {
+  } do |f| %>
+
+  <div class="button-container text-right">
+  <%= link_to "Back to index", herbs_path, class: "btn btn-default" %>
+  <%= f.submit "Submit", class: "btn btn-info" %>
+  </div>
+  <fieldset >
+  <div class="col-md-10">
+  <%= f.input :category, collection: Category.for_herb.order(:name_eng), prompt: "Select a Category", :label_method => :name_eng, :value_method => :id, :input_html=> {style: 'inline'}%>
+  </fieldset >
+  <fieldset >
+  <div class="col-md-5 text-left form-inline">
+  <label>Related Organ</label>
+  <%= f.input :channel, as: :check_boxes, :item_wrapper_class => 'checkbox-container', collection: Herb::CHANNELS, label: false %>
+  </div>
+  <div class="col-md-4 form-inline">
+  <label>Properties</label>
+<%= f.input :property, as: :check_boxes, collection: Herb::PROPERTIES , :item_wrapper_class => 'checkbox-container', label: false%> 
+  </div>
+  <div class="col-md-3 form-inline">
+  <label>Natures</label>
+  <%= f.input :nature, as: :check_boxes, collection: Herb::NATURES , :item_wrapper_class => 'checkbox-container', label: false%> 
+  </div>
+  </fieldset>
+  <fieldset>
+  <div class="col-md-10">
+  <%= f.input :name_eng, :input_html => {:size => 200, :maxlength => 255} %>
+  <%= f.input :name_ko, :input_html => {:size => 200, :maxlength => 255} %>
+  <%= f.input :name_la, :input_html => {:size => 200, :maxlength => 255} %>
+  <%= f.input :actions, as: :text %>
+  <%= f.input :westernuse, as: :text %>
+  <%= f.input :contraindication, as: :text %>
+  <%= f.input :qty, :input_html => {:size => 200, :maxlength => 255} %>
+  </fieldset>
+  </div>
+  <div class="col-md-10">
+  <hr> 
+  <label>Subindication </label>
+  <= link_to "", new_subindication_path, class: "glyphicon glyphicon-plus" %>
+<= f.association :subindications, as: :check_boxes, label: false, collection: Subindication.order(:name_eng), :label_method => :name_eng, :value_method = :id %>
+      </div>
+  </div>
+  </br>
+  </br>
+  <div class="col-xs-18 col-sm-8 col-md-12 row text-right">
+    <%= link_to "Back to index", herbs_path, class: "btn btn-default" %>
+    <%= f.submit "Submit", class: "btn btn-info" %>
+  </div>
+<% end %>

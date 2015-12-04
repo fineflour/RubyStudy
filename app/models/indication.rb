@@ -6,7 +6,6 @@ class Indication < ActiveRecord::Base
   has_many :herbalformulars, through: :herbalformuar_indications
   has_many :herbalformular_indications
 
-
   has_many :zangfus, through: :zangfu_indications
   has_many :zangfu_indications, :dependent => :destroy
   has_many :subindications, :through => :indication_subindications

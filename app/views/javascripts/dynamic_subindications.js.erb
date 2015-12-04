@@ -1,0 +1,26 @@
+var subindications = new Array();
+<% for s in @subindications -%>
+  subindications.push(new Array(<%= s.indications_id %>, '<%=s.name_eng %>', <%= s.id %>));
+<% end -%>
+
+function disease_indicationSelected() {
+  indication_id = $('disease_indication_id').getValue();
+//alert(indication_id);
+  options = $('disease_subindication_id').options;
+  options.length = 1;
+  subindications.each(function(s) {
+    if (s[0] == indication_id) {
+      options[options.length] = new Option(s[1], s[2]);
+    }
+  });
+  if (options.length == 1) {
+    $('subindication_field').hide();
+  } else {
+    $('subindication_field').show();
+  }
+}
+
+document.observe('dom:loaded', function() {
+  indicationSelected();
+  $('disease_indication_id').observe('change', disease_indicationSelected);
+});

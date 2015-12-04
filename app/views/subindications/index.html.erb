@@ -1,0 +1,33 @@
+<div class="right-panel">
+  <div class="page-header">
+    <h1>Sub Indications</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <%= link_to "Add new", new_subindication_path, class: "btn btn-info" %>
+        </div>
+        <div class="table-responsive">
+          <table id="indication" class="table table-bordered table-hover">
+            <tbody>
+              <% @subindications.each do |i| %>
+                <tr id="indication-<%= i.id %>">
+                <td><%=link_to i.name_eng, subindication_path(i) %></td>
+                  <td>
+                    <%= link_to "Edit", edit_subindication_path(i) %> | 
+                    <%= link_to "Delete", subindication_path(i), method: :delete, data: { confirm: 'Are you sure that you want to delete?'} %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <span class="button-container pull-right">
+        <%= will_paginate @subindications, renderer: BootstrapPagination::Rails %>
+      </span>
+      </div>
+    </div>
+  </div>
+</div>

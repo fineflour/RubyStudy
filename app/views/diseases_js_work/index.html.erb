@@ -1,0 +1,7 @@
+<%= form_for :trip, url: {action: "show"}, html: {method: "get"} do |f| %>
+  <%= f.select :indication_id, options_for_select(@indications.collect { |i|
+    [i.name_eng.titleize, i.id] }, 1), {}, { id: 'indications_select' } %>
+  <%= f.select :subindication_id, options_for_select(@subindications.collect { |s|
+    [s.name_eng.titleize, s.id] }, 0), {}, { id: 'subindications_select' } %>
+  <%= f.submit "Go!" %>
+  <% end %>

@@ -2,13 +2,13 @@ class IndicationsController < ApplicationController
   def index
     @indications = Indication.order(:name_eng).paginate(page: params[:page])
   end
+
   def show
     @indication = Indication.find(params[:id])
     @subindications = @indication.subindications 
     @zangfus = @indication.zangfus
 
   end
-
 
   def new
     @indication = Indication.new

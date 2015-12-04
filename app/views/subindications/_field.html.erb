@@ -1,0 +1,38 @@
+<%
+    # Required local params
+  # @param user [User] - an instance of User to render the form for.
+%>
+<p class="data-row">
+ <p class="data-row">
+    <span class="data-name">Indication Category :</span>
+    <span class="data-value"><%= subindication.indications.first.name_eng %></span>
+    </p>
+
+
+  <span class="data-name">Related Organs:</span>
+  <span class="data-value"><% @zangfus.map{|p| p.name_eng}.join(",")  %></span>
+  <span class="data-value"><% @zangfus.each do |i| %></span>
+    <%= i.name_eng %><%= "," unless i == @zangfus.last %>
+<% end %>
+  </p>
+
+  
+  <p class="data-row">
+  <span class="data-name">Indication:</span>
+  <span class="data-value"><%= subindication.name_ko %></span>
+  </p>
+
+
+  <p class="data-row">
+  <span class="data-name">Description</span>
+  <span class="data-value"><%= subindication.description %></span>
+  </p>
+
+  <p class="data-row">
+  <span class="data-name">Created on:</span>
+  <span class="data-value"><%= subindication.created_at %></span>
+  </p>
+  <p class="data-row">
+  <span class="data-name">Last updated on:</span>
+  <span class="data-value"><%= subindication.updated_at %></span>
+  </p>

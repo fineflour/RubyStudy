@@ -1,0 +1,37 @@
+<%
+# Required local params
+# @param user [User] - an instance of User to render the form for.
+%>
+
+  <p class="data-row">
+    <span class="data-name">Herb:</span>
+    <span class="data-value"><%= herb.name_eng %></span>
+    <span class="data-value"><%= herb.name_ko %></span>
+  </p>
+
+  <p class="data-row">
+    <span class="data-name">Property</span>
+    <span class="data-value"><%= herb.property %></span>
+  </p>
+  <p class="data-row">
+    <span class="data-name">Nature</span>
+    <span class="data-value"><%= herb.nature %></span>
+  </p>
+  <p class="data-row">
+    <span class="data-name">Channel</span>
+    <span class="data-value"><%= herb.channel %></span>
+  </p>
+  
+  <p class="data-row">
+    <span class="data-name">Contra-Indications</span>
+    <span class="data-value"><%= herb.contraindication %></span>
+  </p>
+
+ <p class="data-row">
+    <span class="data-name">Created on:</span>
+    <span class="data-value"><%= herb.created_at %></span>
+  </p>
+  <p class="data-row">
+    <span class="data-name">Last updated on:</span>
+    <span class="data-value"><%= herb.updated_at %></span>
+  </p>
