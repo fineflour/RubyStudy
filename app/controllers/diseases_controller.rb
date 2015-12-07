@@ -11,7 +11,8 @@ class DiseasesController < ApplicationController
   def show
     @disease = Disease.find(params[:id])
     @category = @disease.categories.first
-    @subindications = Subindication.by_disease(params[:id])
+    @zangfus = @disease.zangfus
+    @subindications = @disease.subindications
     #    @disease = Disease.find(params[:id])
     #    @category = @disease.categories.first
     #    @subindications = @disease.subindications
@@ -21,12 +22,19 @@ class DiseasesController < ApplicationController
     @disease = Disease.new
     @indications = Indication.all
     @subindications = Subindication.joins(:indications).where("indication_id = ?", Indication.first.id)
+
+    @list_indications = Indication.all
+    @list_subindications = Subindication.by_indication(Indication.first.id)
+
     #@subindications = Indication.get_subindications_by_id(Indication.first.id)
   end
 
   def create
     @disease = Disease.new(disease_params)
     if @disease.save
+      @category  = Category.find(params[:category_id])
+      @disease.categories << @category
+                            
       flash[:error] = "Disease is not created."
       redirect_to @disease, notice: "Disease created successfully!"
     else
@@ -87,7 +95,16 @@ class DiseasesController < ApplicationController
   def update
     @disease = Disease.find(params[:id])
     @disease.update_attributes(disease_params)
+    #@category = @disease.categories.first
+    @subindications = Subindication.by_disease(params[:id])
+    @list_indications = Indication.all
+    @list_subindications = Subindication.by_indication(Indication.first.id)
+
+    #binding.pry
     if @disease.save  
+      #@dc = DiseaseCategory.find_by_category_id(@category.id)
+      #@dc.update_attributes(category_id: params[:disease][:categories])
+      #@dc.save
       redirect_to @disease, notice: "Successfully updated Disease!"
     else
       flash[:error] = "Disease not updated. Please try again."
@@ -105,7 +122,8 @@ class DiseasesController < ApplicationController
 
   private
   def disease_params
-    params.require(:disease).permit(:name_eng, :name_ko, :name_tcm, :description, :category[],:organs[])
+    params.require(:disease).permit(:name_eng, :name_ko, :name_tcm, :category_ids, :description,:zangfu_ids => [])
+
   end
 
   def subindication_params

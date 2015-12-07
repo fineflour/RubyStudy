@@ -14,7 +14,7 @@ class SubindicationsController < ApplicationController
 
   def create    
     @subindication = Subindication.new(subindication_params)
-    #binding.pry
+    binding.pry
     if @subindication.save  
       flash[:error] = "Indication created."
       redirect_to @subindication, notice: "Sub Indication created successfully!"
@@ -30,6 +30,7 @@ class SubindicationsController < ApplicationController
 
   def update
     @subindication = Subindication.find(params[:id])
+#    binding.pry
     @subindication.update_attributes(subindication_params)
 
     if @subindication.save  
@@ -48,6 +49,6 @@ class SubindicationsController < ApplicationController
   end
 
   def subindication_params
-    params.require(:subindication).permit(:name_eng, :name_ko, :description, :zangfu_ids => [], :indication_ids => [])
+    params.require(:subindication).permit(:name_eng, :name_ko, :description, :indication_ids, :zangfu_ids => [])
   end
 end

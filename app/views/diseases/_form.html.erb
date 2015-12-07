@@ -17,13 +17,13 @@
   <div class="row">
     <fieldset >
       <div class="col-md-10">
-        <%= f.input :categories, collection: Category.for_disease, prompt: "Select a Category", :label_method => :name_eng, :value_method => :id, :input_html=> {style: 'inline'}, multiple: false%>
+        <%= f.association :categories, collection_select: Category, prompt: "Select a Indication category",label: false, :label_method => :name_eng, :value_method => :id,  :item_wrapper_class => 'checkbox-container', :input_html=> {multiple: false, style: 'inline'}%>
       </fieldset >
 
       <fieldset >
         <div class="col-md-10 form-inline">
           <label>Related Organs </label>
-          <%= f.input :channel, as: :check_boxes, collection: Zangfu.channel , :item_wrapper_class => 'checkbox-container', :label_method => :short_name, :value_method => :id, label: false%> 
+        <%= f.association :zangfus, as: :check_boxes, collection: Zangfu.order(:name_eng), label: false, :label_method => :name_eng, :value_method => :id,  :item_wrapper_class => 'checkbox-container'%>
         </div>
       </fieldset>
       <fieldset>

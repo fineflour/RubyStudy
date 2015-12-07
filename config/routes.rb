@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'categories/index'
+
+  get 'categories/show'
+
+  get 'categories/new'
+
+  get 'categories/destroy'
+
   get 'diseases/update_subindications', as: 'update_subindications'
   get 'diseases/add_subindication', as: 'add_subindication'
   get 'diseases/remove_subindication', as: 'remove_subindication'

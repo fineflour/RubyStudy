@@ -25,7 +25,8 @@
 
     <p class="data-row">
     <span class="data-name">Organ :</span>
-    <span class="data-value"><%= disease.organ %></span>
+    <span class="data-value">
+      <% @zangfus.each do |z| %><%= z.name_eng %><% end %></span>
     </p>
 
     <p class="data-row">

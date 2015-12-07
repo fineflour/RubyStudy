@@ -14,7 +14,7 @@
   </div>
   <fieldset >
   <div class="col-md-10">
-    <%= f.association :indications, collection_select: Indication.order(:name_eng), prompt: "Select a Indication category", :label_method => :name_eng, :value_method => :id, :input_html=> {multiple: false, style: 'inline'}%>
+    <%= f.association :indications, collection_select: Indication.order(:name_eng), prompt: "Select a Indication", :label_method => :name_eng, :value_method => :id, :input_html=> {multiple: false, style: 'inline'}%>
   </fieldset >
 
 

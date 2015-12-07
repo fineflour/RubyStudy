@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026180455) do
+ActiveRecord::Schema.define(version: 20151207184630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,16 @@ ActiveRecord::Schema.define(version: 20151026180455) do
 
   add_index "disease_subindications", ["disease_id"], name: "index_disease_subindications_on_disease_id", using: :btree
   add_index "disease_subindications", ["subindication_id"], name: "index_disease_subindications_on_subindication_id", using: :btree
+
+  create_table "disease_zangfus", force: :cascade do |t|
+    t.integer  "disease_id"
+    t.integer  "zangfu_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "disease_zangfus", ["disease_id"], name: "index_disease_zangfus_on_disease_id", using: :btree
+  add_index "disease_zangfus", ["zangfu_id"], name: "index_disease_zangfus_on_zangfu_id", using: :btree
 
   create_table "diseases", force: :cascade do |t|
     t.string   "name_eng"
@@ -267,6 +277,8 @@ ActiveRecord::Schema.define(version: 20151026180455) do
   add_foreign_key "disease_categories", "diseases"
   add_foreign_key "disease_subindications", "diseases"
   add_foreign_key "disease_subindications", "subindications"
+  add_foreign_key "disease_zangfus", "diseases"
+  add_foreign_key "disease_zangfus", "zangfus"
   add_foreign_key "formular_indications", "herbalformulars"
   add_foreign_key "formular_indications", "indications"
   add_foreign_key "herb_formulars", "herbalformulars"
