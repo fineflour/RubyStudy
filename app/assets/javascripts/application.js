@@ -9,16 +9,17 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+
 //= require react
 //= require react_ujs
-
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
 // require turbolinks
-//= require_tree .
+//= require_tree ./react_components
 //= require components
-//
+//= require react_bootstrap
+
 $(document).ready(function() {
     $('[data-toggle=offcanvas]').click(function() {
           $('.row-offcanvas').toggleClass('active');

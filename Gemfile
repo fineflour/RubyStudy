@@ -8,6 +8,7 @@ gem 'pg'
 gem 'pg_search'
 gem 'pundit'
 gem 'react-rails', '~> 1.5.0'
+gem 'react-bootstrap-rails'
 
 gem 'lol_dba'
 
