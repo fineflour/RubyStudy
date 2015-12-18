@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :records
   devise_for :users
   #, :skip => [:registrations]
-  resources :categories, only: [:index, :create]
+  resources :categories
+  # only: [:index, :create]
   #resources :categories, only: [:index, :create]
 #  get 'categories/index', as: 'categories'
 root :to => redirect('/categories')
