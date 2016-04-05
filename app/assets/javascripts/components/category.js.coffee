@@ -11,31 +11,33 @@
     # yeah... jQuery doesn't have a $.delete shortcut method
     $.ajax
       method: 'DELETE'
-      url: "/records/#{ @props.record.id }"
+      url: "/categories/#{ @props.category.id }"
       dataType: 'JSON'
       success: () =>
-        @props.handleDeleteRecord @props.record
+        @props.handleDeleteCategory @props.category
 
   handleEdit: (e) ->
     e.preventDefault()
     data =
-      name_eng: React.findDOMNode(@refs.name_eng).value
-      name_ko: React.findDOMNode(@refs.namme_ko).value
+      name_eng: ReactDOM.findDOMNode(@refs.name_eng).value
+      name_ko: ReactDOM.findDOMNode(@refs.name_ko).value
+      name_ko: ReactDOM.findDOMNode(@refs.sel_category).value
     # jQuery doesn't have a $.put shortcut method either
     $.ajax
       method: 'PUT'
       url: "/categories/#{ @props.category.id }"
       dataType: 'JSON'
       data:
-        record: data
+        category: data
       success: (data) =>
         @setState edit: false
-        @props.handleEditRecord @props.record, data
+        @props.handleEditCategory @props.category, data
 
-  recordRow: ->
+  categoryRow: ->
     React.DOM.tr null,
-      React.DOM.td null, @props.record.name_eng
-      React.DOM.td null, @props.record.name_ko
+      React.DOM.td null, @props.category.name_eng
+      React.DOM.td null, @props.category.name_ko
+      React.DOM.td null, @props.category.sel_category
       React.DOM.td null,
         React.DOM.a
           className: 'btn btn-default'
@@ -46,20 +48,27 @@
           onClick: @handleDelete
           'Delete'
 
-  recordForm: ->
+  categoryForm: ->
     React.DOM.tr null,
       React.DOM.td null,
         React.DOM.input
           className: 'form-control'
           type: 'text'
-          defaultValue: @props.record.name_eng
-          ref: ''name_eng
+          defaultValue: @props.category.name_eng
+          ref: 'name_eng'
       React.DOM.td null,
         React.DOM.input
           className: 'form-control'
           type: 'text'
-          defaultValue: @props.record.name_ko
+          defaultValue: @props.category.name_ko
           ref: 'name_ko'
+      React.DOM.td null,
+        React.DOM.input
+          className: 'form-control'
+          type: 'text'
+          defaultValue: @props.category.category
+          ref: 'category'
+
       React.DOM.td null,
         React.DOM.a
           className: 'btn btn-default'
@@ -72,6 +81,6 @@
 
   render: ->
     if @state.edit
-      @recordForm()
+      @categoryForm()
     else
-      @recordRow()
+      @categoryRow()
