@@ -5,7 +5,7 @@
 <p class="data-row">
  <p class="data-row">
     <span class="data-name">Indication Category :</span>
-    <span class="data-value"><%= subindication.indications.first.name_eng %></span>
+    <span class="data-value"><%= subindication.indications.map(&:name_eng) %></span>
     </p>
 
 

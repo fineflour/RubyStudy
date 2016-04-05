@@ -3,7 +3,7 @@ class CreateHerbalformulars < ActiveRecord::Migration
     create_table :herbalformulars do |t|
 
       t.references :category, index: true, foreign_key: true
-      t.integer :subcategory
+      #t.references :subcategory, index: true, foreign_key: true
       t.string :name_eng
       t.string :name_ko
       t.string :name_la
@@ -13,7 +13,9 @@ class CreateHerbalformulars < ActiveRecord::Migration
       t.string :pulse
       t.string :contraindication
       t.string :preparation
-
+      t.string :channel
+      t.string :westernuse
+      t.string :note
       t.timestamps null: false
     end
   end

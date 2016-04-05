@@ -17,7 +17,6 @@
   <div class="row">
     <fieldset >
       <div class="col-md-10">
-        <%= f.association :categories, collection_select: Category, prompt: "Select a Indication category",label: false, :label_method => :name_eng, :value_method => :id,  :item_wrapper_class => 'checkbox-container', :input_html=> {multiple: false, style: 'inline'}%>
       </fieldset >
 
       <fieldset >
@@ -49,8 +48,7 @@
         </fieldset>
         <div class="panel panel-default">
           <div class="panel-heading"><label>Sub Indications</label></div>
-
-          <%= render partial: "subindication", locals: { subindications: @disease.subindications} %>            
+          <%= render partial: "subindication", locals: { disease_subindications: @disease_subindications, edit: true} %>            
       </div>
       </div>
 

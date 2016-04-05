@@ -3,9 +3,10 @@
   # @param user [User] an instance of User to render the form for.
   ##form_for url: {action: "show"}, html: {method: "get"} do |f|
 %>
+<% if defined?(edit) && edit %>
   <div id="subindication_list">
   <p class="data-row">
-  <% @subindications.each do |i| %>
+  <% @disease_subindications.each do |i| %>
     <%= hidden_field_tag :disease_id, @disease_id %>
     <%= hidden_field_tag :rm_subindication_id, i.id %>
     <span class="data-value"><%= i.name_eng %>
@@ -14,6 +15,4 @@
   </p>
 <% end %>
 </div>
-
-
-
+<% end %>

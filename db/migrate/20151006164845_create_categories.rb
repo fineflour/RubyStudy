@@ -1,5 +1,5 @@
 class CreateCategories < ActiveRecord::Migration
-  def change
+  def up
     create_table :categories do |t|
       t.string :name_eng
       t.string :name_ko
@@ -9,5 +9,9 @@ class CreateCategories < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+  end 
+  
+  def down
+    DROP TABLE IF EXIST categories
   end
 end

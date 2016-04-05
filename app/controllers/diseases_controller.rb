@@ -26,7 +26,6 @@ class DiseasesController < ApplicationController
     @list_indications = Indication.all
     @list_subindications = Subindication.by_indication(Indication.first.id)
 
-    #@subindications = Indication.get_subindications_by_id(Indication.first.id)
   end
 
   def create
@@ -49,6 +48,7 @@ class DiseasesController < ApplicationController
     @subindications = @disease.subindications
     @list_indications = Indication.all
     @list_subindications = Subindication.by_indication(Indication.first.id)
+    @disease_subindications = @disease.subindications.all
   end
 
   def update_subindications 

@@ -16,14 +16,5 @@ class Disease < ActiveRecord::Base
   attr_accessor :indication_id
   attr_accessor :subindication_id
 
-  def self.get_subindication_by_id(id)
-    #Disease.find(id).subindications.all
-    self.joins(:subindications).where("disease_id = ?", id)
-  end
-
-  def self.subindication_name_eng
-    test
-  end
-
-
+  
 end

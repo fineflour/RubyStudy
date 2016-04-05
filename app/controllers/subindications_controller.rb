@@ -14,7 +14,6 @@ class SubindicationsController < ApplicationController
 
   def create    
     @subindication = Subindication.new(subindication_params)
-    binding.pry
     if @subindication.save  
       flash[:error] = "Indication created."
       redirect_to @subindication, notice: "Sub Indication created successfully!"

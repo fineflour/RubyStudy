@@ -26,16 +26,6 @@ ActiveRecord::Schema.define(version: 20151217002306) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "diseas_categories", force: :cascade do |t|
-    t.integer  "disease_id"
-    t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "diseas_categories", ["category_id"], name: "index_diseas_categories_on_category_id", using: :btree
-  add_index "diseas_categories", ["disease_id"], name: "index_diseas_categories_on_disease_id", using: :btree
-
   create_table "disease_categories", force: :cascade do |t|
     t.integer  "disease_id"
     t.integer  "category_id"
@@ -72,11 +62,9 @@ ActiveRecord::Schema.define(version: 20151217002306) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.string   "channel"
-    t.string   "organ"
+    t.string   "name_tcm"
     t.string   "western_dx"
     t.string   "tcm_dx"
-    t.string   "name_tcm"
   end
 
   create_table "formular_indications", force: :cascade do |t|
@@ -122,12 +110,11 @@ ActiveRecord::Schema.define(version: 20151217002306) do
     t.string   "pulse"
     t.string   "contraindication"
     t.string   "preparation"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "subcategory_id"
     t.string   "channel"
     t.string   "westernuse"
     t.string   "note"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_index "herbalformulars", ["category_id"], name: "index_herbalformulars_on_category_id", using: :btree
@@ -140,13 +127,13 @@ ActiveRecord::Schema.define(version: 20151217002306) do
     t.string   "property"
     t.string   "nature"
     t.string   "channel"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
     t.string   "contraindication"
     t.string   "westernuse"
     t.string   "qty"
     t.string   "action"
     t.string   "note"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_index "herbs", ["category_id"], name: "index_herbs_on_category_id", using: :btree
@@ -263,24 +250,13 @@ ActiveRecord::Schema.define(version: 20151217002306) do
   create_table "zangfus", force: :cascade do |t|
     t.string   "name_eng"
     t.string   "name_ko"
-    t.string   "channel_ko"
+    t.string   "meridian_eng"
+    t.string   "meridian_ko"
     t.string   "description"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.string   "short_name"
-    t.string   "channel_eng"
-    t.string   "five_element"
-    t.string   "property"
-    t.string   "emotion"
-    t.string   "season"
-    t.string   "western"
-    t.string   "note"
-    t.string   "yinyang"
-    t.integer  "order"
   end
 
-  add_foreign_key "diseas_categories", "categories"
-  add_foreign_key "diseas_categories", "diseases"
   add_foreign_key "disease_categories", "categories"
   add_foreign_key "disease_categories", "diseases"
   add_foreign_key "disease_subindications", "diseases"

@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   # only: [:index, :create]
   #resources :categories, only: [:index, :create]
 #  get 'categories/index', as: 'categories'
-root :to => redirect('/categories')
-  #root to: 'users#index'
+#root :to => redirect('/categories')
+  root to: 'users#index'
 
   resources :users, only: [:index, :edit, :update, :show]
 

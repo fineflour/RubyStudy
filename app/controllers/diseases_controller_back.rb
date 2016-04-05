@@ -13,6 +13,7 @@
     @disease = Disease.new
     @indications = Indication.all
     @subindications = Indication.get_subindications_by_id(params[:indication_id])
+    @disease_subindications = Disease.get_subindication_by_id(1)
   end
 
   def create
