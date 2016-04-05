@@ -136,11 +136,6 @@ GEM
     kgio (2.10.0)
     launchy (2.4.3)
       addressable (~> 2.3)
-    letter_opener (1.4.1)
-      launchy (~> 2.2)
-    letter_opener_web (1.2.3)
-      letter_opener (~> 1.0)
-      rails (>= 3.2)
     lol_dba (2.0.3)
       actionpack (>= 3.0, < 5.0)
       activerecord (>= 3.0, < 5.0)
@@ -368,8 +363,6 @@ DEPENDENCIES
   jquery-rails
   keyword_search
   launchy
-  letter_opener
-  letter_opener_web (~> 1.2.0)
   lol_dba
   nested_form
   paper_trail
