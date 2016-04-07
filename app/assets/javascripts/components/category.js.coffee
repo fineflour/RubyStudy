@@ -21,7 +21,7 @@
     data =
       name_eng: ReactDOM.findDOMNode(@refs.name_eng).value
       name_ko: ReactDOM.findDOMNode(@refs.name_ko).value
-      name_ko: ReactDOM.findDOMNode(@refs.sel_category).value
+      category_type: ReactDOM.findDOMNode(@refs.category_type).value
     # jQuery doesn't have a $.put shortcut method either
     $.ajax
       method: 'PUT'
@@ -37,7 +37,7 @@
     React.DOM.tr null,
       React.DOM.td null, @props.category.name_eng
       React.DOM.td null, @props.category.name_ko
-      React.DOM.td null, @props.category.sel_category
+      React.DOM.td null, @props.category.category_type
       React.DOM.td null,
         React.DOM.a
           className: 'btn btn-default'
@@ -66,8 +66,8 @@
         React.DOM.input
           className: 'form-control'
           type: 'text'
-          defaultValue: @props.category.category
-          ref: 'category'
+          defaultValue: @props.category.category_type
+          ref: 'category_type'
 
       React.DOM.td null,
         React.DOM.a

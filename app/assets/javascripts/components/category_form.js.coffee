@@ -2,10 +2,10 @@
   getInitialState: ->
     name_eng: ''
     name_ko: ''
-    sel_category: ''
+    ctype: ''
 
   valid: ->
-    @state.name_eng && @state.name_ko && @state.sel_category
+    @state.name_eng && @state.name_ko && @state.ctype
 
   handleChange: (e) ->
     name = e.target.name
@@ -46,9 +46,9 @@
           #multiple: false
           type: 'text'
           className: 'form-control'
-          placeholder: 'category'
-          name: 'sel_category'
-          value: @state.sel_category
+          placeholder: 'Category Type'
+          name: 'ctpye'
+          value: @state.c_type
           onChange: @handleChange
          #option: (value: c.category, key: c.id) for c in @state.category
       React.DOM.button

@@ -1,10 +1,11 @@
 class CategoriesController < ApplicationController
 
   def index
-    @categories = Category.order('category')
+    @categories = Category.order('category_type')
   end
 
   def create 
+    binding.pry
     @category = Category.new(category_params)
     #binding.pry
     if @category.save          
@@ -33,6 +34,6 @@ class CategoriesController < ApplicationController
 
   private
   def category_params
-    params.require(:category).permit(:name_eng, :name_ko)
+    params.require(:category).permit(:name_eng, :name_ko, :category_type)
   end
 end
