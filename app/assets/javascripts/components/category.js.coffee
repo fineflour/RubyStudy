@@ -9,7 +9,8 @@
   handleDelete: (e) ->
     e.preventDefault()
     # yeah... jQuery doesn't have a $.delete shortcut method
-    $.ajax
+    x = confirm("Are you sure you want to delete?")
+    $.ajax if x
       method: 'DELETE'
       url: "/categories/#{ @props.category.id }"
       dataType: 'JSON'
@@ -21,7 +22,7 @@
     data =
       name_eng: ReactDOM.findDOMNode(@refs.name_eng).value
       name_ko: ReactDOM.findDOMNode(@refs.name_ko).value
-      category_type: ReactDOM.findDOMNode(@refs.category_type).value
+      cgroup: ReactDOM.findDOMNode(@refs.cgroup).value
     # jQuery doesn't have a $.put shortcut method either
     $.ajax
       method: 'PUT'
@@ -37,7 +38,7 @@
     React.DOM.tr null,
       React.DOM.td null, @props.category.name_eng
       React.DOM.td null, @props.category.name_ko
-      React.DOM.td null, @props.category.category_type
+      React.DOM.td null, @props.category.cgroup
       React.DOM.td null,
         React.DOM.a
           className: 'btn btn-default'
@@ -66,8 +67,8 @@
         React.DOM.input
           className: 'form-control'
           type: 'text'
-          defaultValue: @props.category.category_type
-          ref: 'category_type'
+          defaultValue: @props.category.cgroup
+          ref: 'cgroup'
 
       React.DOM.td null,
         React.DOM.a

@@ -2,10 +2,10 @@
   getInitialState: ->
     name_eng: ''
     name_ko: ''
-    ctype: ''
+    cgroup: ''
 
   valid: ->
-    @state.name_eng && @state.name_ko && @state.ctype
+    @state.name_eng && @state.name_ko && @state.cgroup
 
   handleChange: (e) ->
     name = e.target.name
@@ -42,15 +42,19 @@
           onChange: @handleChange
       React.DOM.div
         className: 'form-group'
-        React.DOM.input
-          #multiple: false
-          type: 'text'
+        React.DOM.select
+          multiple: false
+          #options: #[{value: F label: "F"}, {value: D label: "D"}]
           className: 'form-control'
-          placeholder: 'Category Type'
-          name: 'ctpye'
-          value: @state.c_type
-          onChange: @handleChange
-         #option: (value: c.category, key: c.id) for c in @state.category
+          #placeholder: 'Category Group'
+          name: 'cgroup'
+          #onChange: @handleChange
+          #options: (value: c key: c) for c in ['H', 'D']
+          value: @state.cgroup
+          React.DOM.option(value: cgroup, key: cgroup, "#{cgroup.charAt(0)}" ) for cgroup in ['Formular', 'Disease']
+
+          #options: [{value: 'F', key: 'F'}, {value: 'D', key: 'D'}]
+          #options: (value: c.cgroup, key: c.id) for c in @state.cgroup
       React.DOM.button
         type: 'submit'
         className: 'btn btn-primary'

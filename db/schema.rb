@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 20160406193536) do
   create_table "categories", force: :cascade do |t|
     t.string   "name_eng"
     t.string   "name_ko"
-    t.string   "category_type"
+    t.string   "cgroup"
     t.integer  "level"
     t.integer  "uplevel_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "disease_categories", force: :cascade do |t|

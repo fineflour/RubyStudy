@@ -34,7 +34,7 @@
           React.DOM.tr null,
             React.DOM.th null, 'English'
             React.DOM.th null, 'Korean'
-            React.DOM.th null, 'Type'
+            React.DOM.th null, 'Category Group'
             React.DOM.th null, 'Action'
         React.DOM.tbody null,
           for category in @state.categories

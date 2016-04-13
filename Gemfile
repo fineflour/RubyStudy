@@ -76,6 +76,7 @@ group :development, :test, :staging do
   gem 'awesome_print'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'jasmine-rails'
   #gem 'letter_opener'
   #gem 'letter_opener_web', '~> 1.2.0'
   gem 'rubocop'
