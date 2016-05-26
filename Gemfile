@@ -18,7 +18,6 @@ gem 'devise', '3.4.1'
 gem 'keyword_search'
 
 
-gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 
@@ -77,6 +76,7 @@ group :development, :test, :staging do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'jasmine-rails'
+  gem 'web-console', '~> 2.0'
   #gem 'letter_opener'
   #gem 'letter_opener_web', '~> 1.2.0'
   gem 'rubocop'
