@@ -64,11 +64,14 @@
           defaultValue: @props.category.name_ko
           ref: 'name_ko'
       React.DOM.td null,
-        React.DOM.input
+        React.DOM.select
+          multiple: false
           className: 'form-control'
-          type: 'text'
+          name: 'cgroup'
+          onChange: @handleChange
           defaultValue: @props.category.cgroup
           ref: 'cgroup'
+          React.DOM.option(value: cgroup, key: cgroup, "#{cgroup}" ) for cgroup in ['Formular', 'Disease']
 
       React.DOM.td null,
         React.DOM.a

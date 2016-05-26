@@ -48,13 +48,11 @@
           className: 'form-control'
           #placeholder: 'Category Group'
           name: 'cgroup'
-          #onChange: @handleChange
+          onChange: @handleChange
           #options: (value: c key: c) for c in ['H', 'D']
           value: @state.cgroup
-          React.DOM.option(value: cgroup, key: cgroup, "#{cgroup.charAt(0)}" ) for cgroup in ['Formular', 'Disease']
+          React.DOM.option(value: cgroup, key: cgroup, "#{cgroup}" ) for cgroup in ['Select a group', 'Formular', 'Disease']
 
-          #options: [{value: 'F', key: 'F'}, {value: 'D', key: 'D'}]
-          #options: (value: c.cgroup, key: c.id) for c in @state.cgroup
       React.DOM.button
         type: 'submit'
         className: 'btn btn-primary'
