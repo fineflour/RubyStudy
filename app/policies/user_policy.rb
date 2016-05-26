@@ -4,15 +4,15 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    index?
+    user.admin? 
   end
 
   def edit?
-    index?
+    user.admin? 
   end
 
   def update?
-    index?
+    user.admin? 
   end
 
 
