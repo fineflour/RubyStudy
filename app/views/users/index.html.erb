@@ -7,7 +7,7 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <%= link_to "Add new user", new_user_registration_path, class: "btn btn-info" %>
+          <%= link_to "Add new user", new_user_path, class: "btn btn-info" %>
         </div>
 
         <div class="table-responsive">
@@ -22,10 +22,10 @@
             <tbody>
               <% @users.each do |u| %>
                 <tr id="user-<%= u.id %>">
-                  <td><%= u.name %></td>
+                <td><%=link_to u.name, user_path(u) %></td>
                   <td><%= u.email %></td>
-                  <td></td>
-                  <td>
+                  <td><%= u.role%></td>
+                  <td class="text-center">
                     <%= link_to "Edit", edit_user_path(u) %>
                   </td>
                 </tr>

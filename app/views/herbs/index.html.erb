@@ -3,6 +3,7 @@
     <h1>Single Herbs</h1>
   </div>
 
+  <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -11,23 +12,24 @@
         <div class="table-responsive">
           <table id="herb" class="table table-bordered table-hover">
             <tbody>
-              <% @herbs.each do |i| %>
-                <tr id="herb-<%= i.id %>">
-                  <td><%=link_to i.name_eng, herb_path(i) %></td>
-                  <td><%= i.name_ko %></td>
-                  <td>
-                    <%= link_to "Edit", edit_herb_path(i) %> | 
-                    <%= link_to "Delete", herb_path(i), method: :delete, data: { confirm: 'Are you sure that you want to delete?'} %>
-                  </td>
-                </tr>
-              <% end %>
+            <% @herbs.each do |i| %>
+              <tr id="herb-<%= i.id %>">
+              <td><%=link_to i.name_eng, herb_path(i) %></td>
+              <td><%= i.name_ko %></td>
+              <td>
+                <%= link_to "Edit", edit_herb_path(i) %> | 
+                <%= link_to "Delete", herb_path(i), method: :delete, data: { confirm: 'Are you sure that you want to delete?'} %>
+              </td>
+            </tr>
+          <% end %>
             </tbody>
           </table>
         </div>
-      <span class="pull-right">
-        <%= will_paginate @herbs, renderer: BootstrapPagination::Rails %>
-      </span>
+        <span class="pull-right">
+          <%= will_paginate @herbs, renderer: BootstrapPagination::Rails %>
+        </span>
       </div>
     </div>
   </div>
+</div>
 </div>

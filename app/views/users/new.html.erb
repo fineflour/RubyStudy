@@ -1,26 +1,31 @@
 <div class="right-panel">
   <div class="page-header">
-    <h2>Resend unlock instructions</h2>
+    <h3>Sign up</h3>
   </div>
 
-  <div class="row">
-    <div class="col-md-8">
+  <%= simple_form_for @user, 
+    html: {class: "form-horizontal" },
+    wrapper: :horizontal_form,
+    wrapper_mappings: {
+    } do |f| %>
 
-      <%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-        <%= f.error_notification %>
-      <%= f.full_error :unlock_token %>
+    <%= f.error_notification %>
+    <div id="user-edit">
+      <div class="row">
+        <div class="form-inputs">
+          <%= f.input :name, required: true, autofocus: true %>
+          <%= f.input :email, required: true, autofocus: true %>
+          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable) %>
+          <%= f.input :password_confirmation, required: true %>
+          <%= f.association :roles, collection_collection: User::ROLES, :value_method => :id, prompt: "Select a user role", :input_html=> {multiple: false, style: 'inline'}%>
+        </div>
 
-      <div class="form-inputs">
-        <%= f.input :email, required: true, autofocus: true %>
+        <div class="form-actions text-center">
+          <%= f.button :submit, "Sign up" %>
+        </div>
+      <% end %>
+
       </div>
-
-      <div class="form-actions">
-        <%= f.button :submit, "Resend unlock instructions" %>
-      </div>
-    <% end %>
-
-      <%= render "users/shared/links" %>
     </div>
   </div>
 </div>
-

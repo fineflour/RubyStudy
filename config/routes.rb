@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   resources :records
-  devise_for :users #, :skip => [:registrations]
   resources :categories
   # only: [:index, :create]
   #resources :categories, only: [:index, :create]
@@ -9,18 +8,25 @@ Rails.application.routes.draw do
 #root :to => redirect('/categories')
   root to: 'users#index'
 
-  resources :users, only: [:index, :edit, :update, :show]
+  devise_for :users , :skip => [:registrations]
+  resources :users, only: [:new, :create, :index, :update, :show, :edit] do
+    get 'deactivate', as: 'deactivate'
+  end
+  resources :users, :controller => "users"
 
   #  authenticated :user do
   #    match '/delayed_job' => DelayedJobWeb, :anchor => false, via: [:get, :post]
   #  end
 
-  as :user do
-    get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registrations'
+  #Overwrite Devise route
+#  as :user do
+#    get 'users/edit' => 'users/edit', :as => 'edit_user'
+#  end
+
+
+  resources :indications, only: [:index, :new, :create, :edit, :update, :show, :destroy] do
+    collection { post :import }
   end
-
-
-  resources :indications, only: [:index, :new, :create, :edit, :update, :show, :destroy]
   resources :subindications, only: [:index, :new, :create, :edit, :update, :show, :destroy]
   resources :zangfus, only: [:index, :new, :create, :edit, :update, :show, :destroy]
 

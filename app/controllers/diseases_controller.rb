@@ -1,6 +1,6 @@
 class DiseasesController < ApplicationController
   respond_to :html, :js
-  before_action :all_susbindicatios, only: [:add_subindicaqtion]
+  before_action :all_susbindications, only: [:add_subindicaqtion]
 
   def index
     @diseases = Disease.paginate(page: params[:page])

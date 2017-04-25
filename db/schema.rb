@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406193536) do
+ActiveRecord::Schema.define(version: 20160608165403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,11 +60,13 @@ ActiveRecord::Schema.define(version: 20160406193536) do
     t.string   "name_eng"
     t.string   "name_ko"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "name_tcm"
+    t.string   "channel"
+    t.string   "organ"
     t.string   "western_dx"
     t.string   "tcm_dx"
+    t.string   "name_tcm"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "formular_indications", force: :cascade do |t|
@@ -100,7 +102,6 @@ ActiveRecord::Schema.define(version: 20160406193536) do
   add_index "herb_indications", ["indication_id"], name: "index_herb_indications_on_indication_id", using: :btree
 
   create_table "herbalformulars", force: :cascade do |t|
-    t.integer  "category_id"
     t.string   "name_eng"
     t.string   "name_ko"
     t.string   "name_la"
@@ -117,10 +118,7 @@ ActiveRecord::Schema.define(version: 20160406193536) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "herbalformulars", ["category_id"], name: "index_herbalformulars_on_category_id", using: :btree
-
   create_table "herbs", force: :cascade do |t|
-    t.integer  "category_id"
     t.string   "name_eng"
     t.string   "name_ko"
     t.string   "name_la"
@@ -136,8 +134,6 @@ ActiveRecord::Schema.define(version: 20160406193536) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "herbs", ["category_id"], name: "index_herbs_on_category_id", using: :btree
-
   create_table "indication_subindications", force: :cascade do |t|
     t.integer  "indication_id"
     t.integer  "subindication_id"
@@ -149,11 +145,11 @@ ActiveRecord::Schema.define(version: 20160406193536) do
   add_index "indication_subindications", ["subindication_id"], name: "index_indication_subindications_on_subindication_id", using: :btree
 
   create_table "indications", force: :cascade do |t|
+    t.string   "name_eng"
+    t.string   "name_ko"
     t.string   "description"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.string   "name_eng"
-    t.string   "name_ko"
     t.boolean  "active",      default: true
   end
 
@@ -192,10 +188,10 @@ ActiveRecord::Schema.define(version: 20160406193536) do
 
   create_table "subindications", force: :cascade do |t|
     t.string   "name_eng"
+    t.string   "name_ko"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.string   "name_ko"
   end
 
   create_table "user_roles", force: :cascade do |t|
@@ -209,12 +205,12 @@ ActiveRecord::Schema.define(version: 20160406193536) do
   add_index "user_roles", ["user_id"], name: "index_user_roles_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                            default: "", null: false
+    t.string   "encrypted_password",               default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                    default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -222,6 +218,7 @@ ActiveRecord::Schema.define(version: 20160406193536) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.bit      "active",                 limit: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -250,9 +247,21 @@ ActiveRecord::Schema.define(version: 20160406193536) do
   create_table "zangfus", force: :cascade do |t|
     t.string   "name_eng"
     t.string   "name_ko"
-    t.string   "meridian_eng"
-    t.string   "meridian_ko"
+    t.string   "channel_eng"
+    t.string   "channel_ko"
     t.string   "description"
+    t.string   "short_name"
+    t.string   "string"
+    t.string   "channel"
+    t.string   "five_element"
+    t.string   "property"
+    t.string   "emotion"
+    t.string   "season"
+    t.string   "western"
+    t.string   "note"
+    t.string   "yinyang"
+    t.string   "order"
+    t.string   "integer"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -269,8 +278,6 @@ ActiveRecord::Schema.define(version: 20160406193536) do
   add_foreign_key "herb_formulars", "herbs"
   add_foreign_key "herb_indications", "herbs"
   add_foreign_key "herb_indications", "indications"
-  add_foreign_key "herbalformulars", "categories"
-  add_foreign_key "herbs", "categories"
   add_foreign_key "indication_subindications", "indications"
   add_foreign_key "indication_subindications", "subindications"
   add_foreign_key "point_indications", "indications"

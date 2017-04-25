@@ -50,6 +50,21 @@ class IndicationsController < ApplicationController
     redirect_to @indication
   end
 
+  def import
+    Indication.import(params[:file])
+
+    #if duplicate_records.present?
+    #  flash[:error] = "You cannot import records you have already imported."
+      redirect_to action: "index" 
+    #else 
+    #  session[:indication_report] = @excel_rows
+    #  redirect_to indication_path, notice: "Indications imported."
+    #end
+  end
+
+  private
+
+
   def indication_params
     params.require(:indication).permit(:name_eng, :name_ko, :description, :zangfu_ids => [], :subindication_ids => [])
   end

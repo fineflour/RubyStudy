@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-ruby '2.2.2'
+ruby '2.2.5'
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
@@ -9,7 +9,11 @@ gem 'pg_search'
 gem 'pundit'
 gem 'react-rails', '~> 1.0'
 gem 'react-bootstrap-rails'
-
+# Excel Parser
+gem 'roo'
+gem 'roo-xls' 
+gem 'iconv'
+gem 'fastercsv'
 gem 'lol_dba'
 
 gem 'delayed_job_active_record'
@@ -81,6 +85,7 @@ group :development, :test, :staging do
   #gem 'letter_opener_web', '~> 1.2.0'
   gem 'rubocop'
   gem 'quiet_assets'
+  gem 'guard-ctags-bundler'
 end
 
 group :test do

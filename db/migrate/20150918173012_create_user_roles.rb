@@ -8,6 +8,6 @@ class CreateUserRoles < ActiveRecord::Migration
     end
   end
   def down
-    drop_table(:user, if_exists: true)
+    drop_table(:user_roles, if_exists: true)
   end
 end

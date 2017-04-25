@@ -1,6 +1,6 @@
 <%
-# Required local params
-# @param user [User] an instance of User to render the form for.
+    # Required local params
+  # @param user [User] an instance of User to render the form for.
 %>
 
 <%= simple_form_for user, html: {class: "form-horizontal" },
@@ -8,12 +8,13 @@
   wrapper_mappings: {
   } do |f| %>
 
-  <%= f.input :email %>
   <%= f.input :name %>
-  <%= f.input :roles, collection: User::ROLES, :selected => @role.id %>
+  <%= f.input :email %>
+  <%= f.association :roles, collection_collection: User::ROLES, :value_method => :id, prompt: "Select a user role", :input_html=> {multiple: false, style: 'inline'}%>
 
-  <div class="button-padding pull-right">
+  <div class= "form-actions text-center">
     <%= link_to "Back to index", users_path, class: "btn btn-default" %>
+    <%= link_to "Delete", user_deactivate_path(@user), data: { confirm: 'Are you sure that you want to delete?'}, class: "btn btn-danger" %>
     <%= f.submit "Submit", class: "btn btn-info" %>
   </div>
 <% end %>

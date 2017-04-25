@@ -1,4 +1,5 @@
 class Indication < ActiveRecord::Base
+
   has_many :points, through: :point_indications
   has_many :point_indications
   has_many :herbs, through: :herb_indications
@@ -32,4 +33,49 @@ class Indication < ActiveRecord::Base
   end
 
 
+  def self.import(file)
+    n=0
+    u=0
+    CSV.foreach(file.path, headers: true, col_sep: '|') do |row|
+      if row[0].nil?
+        puts "Adding new Indication: #{row[1]}"
+        indication = Indication.new()
+
+        n += 1
+      else
+
+        next if row[0].downcase == "id"
+        puts "Updating indication: #{row[1]}"
+        indication = Indication.find(row[0])
+
+        u += 1
+      end
+        indication.name_eng =row["name_eng"]
+        indication.name_ko = row["name_ko"]
+        indication.description = row["description"]
+#        binding.pry
+        indication.save
+      end
+      #Indication.create! row.to_hash
+    puts ""
+    puts "Import Completed - Added: #{n} | Updated #{u} Indications"
+  end
+
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+    when ".csv" then Csv.new(file.path, nil, :ignore)
+    when ".xls" then Excel.new(file.path, nil, :ignore)
+    when ".xlsx" then Excelx.new(file.path, nil, :ignore)
+    else raise "Unknown file type: #{file.original_filename}"
+    end
+  end
+
+  def self.save_import(array, filename)
+    array.each do |row|
+      self.create(name: row.name,
+                  name_eng: row.name_eng,
+                  description: row.description)
+#                  zangfu_ids: row.zangfu_id)
+    end
+  end
 end

@@ -1,28 +1,40 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, 
+    :recoverable, :rememberable, :trackable, :validatable #:registerable,
   has_many :user_roles
   has_many :user_roles, :dependent => :destroy
   has_many :roles, :through => :user_roles
   #attr_accessor :login
 
   ROLES = Role.select('name, id')
-  ADMIN_ROLE = "Administrator"
+  ADMIN_ROLE = "System Admin"
   after_initialize :set_default_role, :if => :new_record?
+  before_create :set_default_role, :set_active
 
   #========SCOPE===========================================================
 
   #========================================================================
 
-  def get_role
-
+  def role
+    self.roles.map(&:name).first
   end
+
+  def role_id
+    self.roles.map(&:id).first
+  end
+
 
   def set_default_role
-    self.roles.name ||="User" 
+    self.roles.name ||= Role.find_by_name"User" 
   end
+
+def set_active
+    self.active ||= 1
+  end
+
+
 
   def generate_token(column)
     begin
@@ -38,6 +50,6 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    self.roles.pluck(:name).include?ADMIN_ROLE
+    self.roles.pluck(:name).include? ADMIN_ROLE
   end
 end

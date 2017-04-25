@@ -15,5 +15,8 @@ class UserPolicy < ApplicationPolicy
     user.admin? 
   end
 
+  def deactivate?
+    user.admin? 
+  end
 
 end

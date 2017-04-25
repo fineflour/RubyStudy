@@ -2,7 +2,7 @@ class CreateHerbalformulars < ActiveRecord::Migration
   def change
     create_table :herbalformulars do |t|
 
-      t.references :category, index: true, foreign_key: true
+      #t.references :category, index: true, foreign_key: true
       #t.references :subcategory, index: true, foreign_key: true
       t.string :name_eng
       t.string :name_ko

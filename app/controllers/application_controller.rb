@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   #plugin protection
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized 
+  require 'csv'
   before_action :authenticate_user!
   force_ssl if: :ssl_configured?
 
